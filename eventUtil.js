@@ -23,11 +23,21 @@ var eventUtil ={
 			}
 		}
 	},
+	getCharCode: function(ev) {
+		return typeof ev.charCode == 'number' ? ev.charCode : ev.keyCode;
+	},
 	getEvent: function(ev) {
 		return ev ? ev : window.event;
 	},
 	getTarget: function(ev) {
 		return ev.target || ev.srcElement;
+	},
+	getWheelDelta: function(ev) {
+		if(ev.wheelDelta) {
+			return ev.wheelDelta;
+		} else {
+			return -ev.detail * 40;
+		}
 	},
 	preventDefault: function(ev) {
 		if(ev.preventDefault) {
