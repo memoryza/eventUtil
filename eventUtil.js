@@ -26,6 +26,10 @@ var eventUtil ={
 	getCharCode: function(ev) {
 		return typeof ev.charCode == 'number' ? ev.charCode : ev.keyCode;
 	},
+	getClipboardText: function(ev) {
+		var cb = ev.clipboardData || window.clipboardData;
+		return cb.getData('text');
+	}
 	getEvent: function(ev) {
 		return ev ? ev : window.event;
 	},
@@ -57,6 +61,9 @@ var eventUtil ={
 		} else {
 			el['on' + type] =null;
 		}
+	},
+	setClipboardText: function(ev, val) {
+		return ev.clipboardData ? ev.clipboardData.setData('text/plain' ,val) : (window.clipboardData ? window.clipboardData.setData('text', val) : '');
 	},
 	setSelectText: function(el, start, end) {
 		if(el && el.setSelectionRange) {
