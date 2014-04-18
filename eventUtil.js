@@ -58,6 +58,17 @@ var eventUtil ={
 			el['on' + type] =null;
 		}
 	},
+	setSelectText: function(el, start, end) {
+		if(el && el.setSelectionRange) {
+			el.setSelectionRange(start, end);
+		} else {
+			var range = el.createTextRange();
+			range.collapse();
+			range.moveStart('character', start);
+			range.moveEnd('character', end - start);
+			range.select();
+		}
+	},
 	stopPropagation: function(ev) {
 		if(ev.stopPropagation) {
 			ev.stopPropagation();
