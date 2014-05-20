@@ -29,7 +29,7 @@ var eventUtil ={
 	getClipboardText: function(ev) {
 		var cb = ev.clipboardData || window.clipboardData;
 		return cb.getData('text');
-	}
+	},
 	getEvent: function(ev) {
 		return ev ? ev : window.event;
 	},
@@ -48,7 +48,7 @@ var eventUtil ={
 	},
 	preventDefault: function(ev) {
 		if(ev.preventDefault) {
-			ev.prevDefault();
+			ev.preventDefault();
 		} else {
 			ev.returnValue =  false;
 		}
