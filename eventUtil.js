@@ -33,6 +33,9 @@ var eventUtil ={
 	getEvent: function(ev) {
 		return ev ? ev : window.event;
 	},
+	getKeyCode: function(ev) {
+		return ev.which || ev.keyCode;
+	},
 	getSelectText: function(el) {
 		return typeof el.selectionStart == 'number' ? el.value.substring(el.selectionStart, el.selectionEnd) : document.selection.createRange().text;
 	},
