@@ -39,6 +39,14 @@ var eventUtil ={
 	getTarget: function(ev) {
 		return ev.target || ev.srcElement;
 	},
+	getTransferData: function(ev, type) {
+		var dataTransfer = ev.dataTransfer;
+		if(type == 'url') {
+			return dataTransfer.getData('url') || dataTransfer.getData('text/uri-list');
+		} else  if(type == 'text') {
+			return dataTransfer.getData('Text');//ff5-  don'y support text => text/plain
+		}
+	},
 	getWheelDelta: function(ev) {
 		if(ev.wheelDelta) {
 			return ev.wheelDelta;
