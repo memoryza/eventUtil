@@ -57,6 +57,17 @@ var eventUtil ={
 			return -ev.detail * 40;
 		}
 	},
+	//device orientation
+	orientationchange: function(handler) {
+		if(window.orientation !== undefined) {
+			eventUtil.addHandler(window, 'orientationchange', handler);
+		} else if(screen.orientation !== undefined){
+			//the dev mozilla(https://developer.mozilla.org/en-US/docs/Web/Reference/Events/orientationchange) fixed it, but i find it's not supported in my device(android 4.1.1)
+			eventUtil.addHandler(screen, 'orientationchange', handler);
+		} else {
+			eventUtil.addHandler(window, 'resize', handler);	 
+		}	
+	},
 	preventDefault: function(ev) {
 		if(ev.preventDefault) {
 			ev.preventDefault();
