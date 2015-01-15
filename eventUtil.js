@@ -114,8 +114,8 @@ var eventUtil = {
 		return name.replace(/([A-Z])/g, function(str, $1) { 
 			return '-' + $1.toLowerCase();
 		}).replace(/^ms-|^webkit-|^o-|^moz-/, function(str) {
-          return '-' + str;
-       });
+	        return '-' + str;
+	    });
 	}
 	
 }
