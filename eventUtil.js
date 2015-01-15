@@ -1,12 +1,12 @@
-var eventUtil ={
+var eventUtil = {
 	addHandler: function(el, type, handler) {
-		if(window.addEventListener) {
+	    if(window.addEventListener) {
 			el.addEventListener(type, handler, false);
-		} else if(window.attachEvent) {
+	    } else if(window.attachEvent) {
 			el.attachEvent('on' + type, handler);
-		} else {
+	    } else {
 			el['on' + type] = handler;
-		}
+	    }
 	},
 	getButton: function(ev) {
 		if(typeof document.implementation.hasFeature == 'function' && document.implementation.hasFeature('MouseEvents', '2.0')) {
@@ -104,5 +104,18 @@ var eventUtil ={
 		} else {
 			ev.cancelBubble = true;
 		}
+	},
+	cssToDom: function(name) {
+		return name.replace(/([a-z])-([a-z])/, function(str, $1, $2) { 
+			return $1 + $2.toUpperCase();
+		}).replace(/(^-)/, '');
+	},
+	domToCss: function(name) {
+		return name.replace(/([A-Z])/g, function(str, $1) { 
+			return '-' + $1.toLowerCase();
+		}).replace(/^ms-|^webkit-|^o-|^moz-/, function(str) {
+          return '-' + str;
+       });
 	}
+	
 }
